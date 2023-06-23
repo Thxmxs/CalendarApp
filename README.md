@@ -28,15 +28,19 @@ npm install
 ## Screens
 
 __Login__
+
 ![image](https://github.com/Thxmxs/CalendarApp/assets/69379135/4a058a9f-eb03-4129-9a49-4f39df9a8a9c)
 
 __Register__
+
 ![image](https://github.com/Thxmxs/CalendarApp/assets/69379135/164a08d2-df18-46f2-ae5c-8ab5396562e3)
 
 __Main__
+
 ![image](https://github.com/Thxmxs/CalendarApp/assets/69379135/7223e40b-3b27-4a02-b15e-b5142af186aa)
 
 __Create event__
+
 ![image](https://github.com/Thxmxs/CalendarApp/assets/69379135/fb5dac1b-ef7a-4dc5-bdd6-26958b3b60a7)
 
 
