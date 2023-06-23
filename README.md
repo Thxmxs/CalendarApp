@@ -3,7 +3,7 @@ Calendar created to share some events with everyone
 
 ## Installation
 
-1. Intall the dependecies
+1. Install the dependecies
 2. Fill the .env file with the endpoint of the backend
 3. Backend repository: https://github.com/Thxmxs/CalendarApp-backend
 
