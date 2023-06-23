@@ -11,7 +11,7 @@ Calendar created to share some events with everyone
 npm install
 ```
 
-## Tecnologies
+## Tecnologies Frontend
 1. React 18.0.37
 1. React-redux
 1. ReduxJS/toolkit
@@ -24,6 +24,19 @@ npm install
 1. yup 
 1. Axios
 1. SweetAlert
+
+## Tecnologies Backend
+https://github.com/Thxmxs/CalendarApp-backend
+1. NodeJS 16.16.0
+1. Express
+2. Express-validator
+3. jsonwebtoken
+4. mongoose
+5. typescript
+6. bcryptjs
+7. cors
+8. dotenv
+   
 
 ## Screens
 
