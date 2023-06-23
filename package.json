@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
     "date-fns": "^2.30.0",
+    "formik": "^2.4.2",
     "react": "^18.2.0",
     "react-big-calendar": "^1.8.1",
     "react-datepicker": "^4.14.0",
@@ -19,7 +21,8 @@
     "react-modal": "^3.16.1",
     "react-redux": "^8.1.0",
     "react-router-dom": "^6.13.0",
-    "sweetalert2": "^11.7.12"
+    "sweetalert2": "^11.7.12",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

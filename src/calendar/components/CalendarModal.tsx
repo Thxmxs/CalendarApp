@@ -32,7 +32,7 @@ export const CalendarModal = () => {
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<IEventCreation>({
     title:'Thomas',
-    note:'Cubillos',
+    notes:'Cubillos',
     start:new Date(),
     end:addHours(new Date(),2)
   })
@@ -74,17 +74,14 @@ export const CalendarModal = () => {
     }
 
     if(formValues.title.length <=0) return;
+    await startSavingEvent({...formValues,bgColor: "#fafafa",
+      user: {
+        _id: "123",
+        name: "Thomas Cubillos",
+      }});
 
-    console.log(formValues);
-   await startSavingEvent({...formValues,bgColor: "#fafafa",
-    user: {
-      _id: "123",
-      name: "Thomas Cubillos",
-    }});
-
-    closeDateModal();
-    setFormSubmitted(false);
-
+      closeDateModal();
+      setFormSubmitted(false);
   }
 
   return (
@@ -148,8 +145,8 @@ export const CalendarModal = () => {
             className="form-control"
             placeholder="Notas"
             rows={5}
-            name="note"
-            value={formValues.note}
+            name="notes"
+            value={formValues.notes}
             onChange={onInputChange}
           ></textarea>
           <small id="emailHelp" className="form-text text-muted">

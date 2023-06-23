@@ -1,28 +1,18 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { IEvent } from '../../calendar/interface/IEvents';
-import { addHours } from 'date-fns';
 
-const tempEvent : IEvent[]= [{
-          _id:'123',
-          title: "cumpleaños",
-          note: "hay que comprar doritos",
-          start: new Date(),
-          end: addHours(new Date(), 2),
-          bgColor: "#fafafa",
-          user: {
-            _id: "123",
-            name: "Thomas Cubillos",
-          },
-}]
+
 
 
 interface IinitialState{
+    isLoadingEvents:boolean,
     events:IEvent[],
     activeEvent:null | IEvent
 }
 
 const initialState :IinitialState = {
-    events:tempEvent,
+    isLoadingEvents:true,
+    events:[],
     activeEvent:null
 }
 
@@ -54,8 +44,23 @@ export const calendarSlice = createSlice({
                 state.activeEvent = null;
             }
 
+        },
+        onLoadEvents:(state, {payload} : PayloadAction<IEvent[]>) =>{
+            state.isLoadingEvents=false;
+            // state.events = payload;
+            payload.forEach(event =>{
+                const exists = state.events.some( dbEvent => dbEvent._id === event._id);
+                if(!exists){
+                    state.events.push(event)
+                }
+            })
+        },
+        onLogoutCalendar:( state ) =>{
+            state.isLoadingEvents = true,
+            state.events=[]
+            state.activeEvent = null;
         }
      },
 });
 
-export const { onSetActiveEvent, onAddNewEvent, onUpdateEvent, onDeleteEvent } = calendarSlice.actions;
+export const { onSetActiveEvent, onAddNewEvent, onUpdateEvent, onDeleteEvent, onLoadEvents,onLogoutCalendar } = calendarSlice.actions;

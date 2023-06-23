@@ -5,22 +5,26 @@ import { localizer } from "../../helpers/calendarLocalizer";
 import { getMessagesES } from "../../helpers/getCalendarMessages";
 import { CalendarEvent } from "../components/CalendarEvent";
 import { IEvent } from "../interface/IEvents";
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 import { CalendarModal } from "../components/CalendarModal";
 import { useUiStore } from "../../hooks/useUiStore";
 import { useCalendarStore } from "../../hooks/useCalendarStore";
 import { FabAddNew } from "../components/FabAddNew";
 import { FabDelete } from "../components/FabDelete";
+import { useAuthStore } from "../../hooks/useAuthStore";
 
 export const CalendarPage = () => {
-  const { events, setActiveEvent } = useCalendarStore();
+  const { events, setActiveEvent, startLoadingEvents } = useCalendarStore();
+  const {user} = useAuthStore();
   const {openDateModal} = useUiStore();
   const [lastView, setLastView] = useState<View>(localStorage.getItem('lastView') as View || 'week');
 
-  const eventStyleGetter: EventPropGetter<IEvent> = () => {
+  const eventStyleGetter: EventPropGetter<IEvent> = ({user:userEvent}) => {
+    console.log(user);
+    const isMyEventt = (user?._id === userEvent._id);
 
     const style = {
-      backgroundColor: "#347CF7",
+      backgroundColor: isMyEventt ? "#347CF7" : "#465660",
       borderRadius: "0px",
       opactiy: 0.8,
       color: "white",
@@ -31,11 +35,9 @@ export const CalendarPage = () => {
   const onDoubleClick = (events:IEvent,e:React.SyntheticEvent<HTMLElement, Event>) =>{
     e.preventDefault();
     openDateModal();
-    console.log({doubleClick:events});
   }
   
   const onSelect = (events:IEvent) =>{
-    console.log({onSelect:events});
     setActiveEvent(events);
   }
   
@@ -43,6 +45,11 @@ export const CalendarPage = () => {
     localStorage.setItem('lastView',view);
     setLastView(view);
   }
+
+  useEffect(() => {
+    startLoadingEvents();
+  }, [])
+  
 
   return (
     <div>
